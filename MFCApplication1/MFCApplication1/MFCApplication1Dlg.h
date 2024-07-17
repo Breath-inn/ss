@@ -37,4 +37,6 @@ public:
 	afx_msg void OnBnClickedCancel2();
 	afx_msg void OnBnClickedCancel();
 	afx_msg void OnBnClickedMsgBtn();
+	afx_msg void OnLbnSelchangeList1();
+	afx_msg void OnLbnSelchangeDialogex();
 };

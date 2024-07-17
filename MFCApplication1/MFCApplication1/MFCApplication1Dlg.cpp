@@ -19,14 +19,18 @@ class CAboutDlg : public CDialogEx
 {
 public:
 	CAboutDlg();
-
+	afx_msg void OnBnClickedMsgBtn();
+	CListBox m_event_list; // 생성된 변수
 // 대화 상자 데이터입니다.
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_ABOUTBOX };
 #endif
 
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 지원입니다.
+		virtual void DoDataExchange(CDataExchange* pDX) {
+			CDialogEx::DoDataExchange(pDX);
+			DDX_Control(pDX, IDC_LIST, m_event_list); //생성된 구문
+		}    // DDX/DDV 지원입니다.
 
 // 구현입니다.
 protected:
@@ -73,6 +77,8 @@ BEGIN_MESSAGE_MAP(CMFCApplication1Dlg, CDialogEx)
 	ON_BN_CLICKED(IDOK, &CMFCApplication1Dlg::OnBnClickedOk)
 	ON_BN_CLICKED(IDCANCEL, &CMFCApplication1Dlg::OnBnClickedCancel)
 	ON_BN_CLICKED(IDC_MSG_BTN, &CMFCApplication1Dlg::OnBnClickedMsgBtn)
+	ON_LBN_SELCHANGE(IDC_LIST1, &CMFCApplication1Dlg::OnLbnSelchangeList1)
+	ON_LBN_SELCHANGE(DialogEx, &CMFCApplication1Dlg::OnLbnSelchangeDialogex)
 END_MESSAGE_MAP()
 
 
@@ -179,5 +185,19 @@ void CMFCApplication1Dlg::OnBnClickedCancel()
 
 void CMFCApplication1Dlg::OnBnClickedMsgBtn()
 {
-	AfxMessageBox(_T("Button clicked!"));
+	//AfxMessageBox(_T("Button clicked!"));
+	int index = m_event_list.InsertString(-1, _T("Button clicked!!"));
+	m_event_list.SetCurSel(index);
+}
+
+
+void CMFCApplication1Dlg::OnLbnSelchangeList1()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+}
+
+
+void CMFCApplication1Dlg::OnLbnSelchangeDialogex()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }
